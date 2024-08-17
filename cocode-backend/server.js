@@ -4,7 +4,6 @@ dotenv.config();
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import path from 'path';
 import http from 'http';
 import { Server } from 'socket.io';
 
@@ -24,7 +23,7 @@ app.use(cors({
 // Setup Socket.IO with CORS
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'https://cocode-482d.onrender.com'],
+    origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'https://cocode-482d.onrender.com'], // Allow only your frontend's origin
     methods: ['GET', 'POST'],
     credentials: true,
   },
@@ -36,17 +35,8 @@ app.use(express.json());
 // Routes
 app.use('/api', codeRoutes);
 
-// Serve static files for the React frontend
-const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, 'frontend', 'dist')));
-
-// Fallback to serving React frontend for any unknown routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
-});
-
 // Socket.IO setup
-codeSocket(io);
+codeSocket(io); // Make sure io is defined before this line
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI)
