@@ -10,7 +10,6 @@ const socket = io('https://cocode-backend.onrender.com', {
   withCredentials: true,
 });
 
-
 function CodeEditor() {
   const { roomId } = useParams();
   const [code, setCode] = useState('');
@@ -41,18 +40,19 @@ function CodeEditor() {
   }, [roomId]);
 
   return (
-    <div className="h-screen relative flex flex-col overflow-hidden">
-      <header className="bg-gradient-to-r from-black via-gray-900 to-black shadow-md p-4 text-white flex justify-between items-center h-14 border-b border-gray-800 z-20">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-black to-[#252525] text-white">
+      {/* Navbar */}
+      <header className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-black to-[#252525] shadow-xl border-b border-black">
         <button
-          className="block lg:hidden text-white text-3xl ml-4"
+          className="lg:hidden text-2xl text-white"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           <FiMenu />
         </button>
-        <h1 className="text-xl font-bold mx-auto">CoCode</h1>
-        <div className="hidden lg:flex space-x-4 mr-4">
+        <h1 className="text-lg lg:text-xl font-extrabold tracking-wide">CoCode</h1>
+        <div className="hidden lg:flex space-x-4">
           <select
-            className="bg-gray-800 text-white border border-gray-600 rounded-lg p-1 text-sm"
+            className="bg-black text-white border border-black rounded-lg p-2 shadow-lg hover:bg-[#242424] transition duration-200"
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
           >
@@ -64,7 +64,7 @@ function CodeEditor() {
             <option value="css">CSS</option>
           </select>
           <select
-            className="bg-gray-800 text-white border border-gray-600 rounded-lg p-1 text-sm"
+            className="bg-black text-white border border-black rounded-lg p-2 shadow-lg hover:bg-[#242424] transition duration-200"
             value={theme}
             onChange={(e) => setTheme(e.target.value)}
           >
@@ -75,58 +75,62 @@ function CodeEditor() {
         </div>
       </header>
 
-      <nav
-        className={`fixed top-0 right-0 h-full bg-gray-900 bg-opacity-90 backdrop-blur-lg p-6 transition-transform transform ${
-          menuOpen ? 'translate-x-0' : 'translate-x-full'
-        } lg:hidden z-20`}
-      >
-        <ul className="space-y-6 text-lg">
-          <li>
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <nav className="fixed inset-0 bg-black bg-opacity-95 p-4 lg:hidden z-50">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-bold text-white">Menu</h2>
             <button
-              className="bg-gray-800 text-white border border-gray-600 rounded-lg px-4 py-2"
+              className="text-3xl text-white"
               onClick={() => setMenuOpen(false)}
             >
-              Close Menu
+              &times; {/* Smaller 'X' symbol */}
             </button>
-          </li>
-          <li>
-            <select
-              className="bg-gray-800 text-white border border-gray-600 rounded-lg p-2 w-full"
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-            >
-              <option value="javascript">JavaScript</option>
-              <option value="python">Python</option>
-              <option value="cpp">C++</option>
-              <option value="java">Java</option>
-              <option value="html">HTML</option>
-              <option value="css">CSS</option>
-            </select>
-          </li>
-          <li>
-            <select
-              className="bg-gray-800 text-white border border-gray-600 rounded-lg p-2 w-full"
-              value={theme}
-              onChange={(e) => setTheme(e.target.value)}
-            >
-              <option value="vs-dark">Dark</option>
-              <option value="light">Light</option>
-              <option value="hc-black">High Contrast Black</option>
-            </select>
-          </li>
-        </ul>
-      </nav>
+          </div>
+          <ul className="space-y-4 text-lg">
+            <li>
+              <select
+                className="bg-black text-white border border-black rounded-lg p-2 w-full shadow-md"
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+              >
+                <option value="javascript">JavaScript</option>
+                <option value="python">Python</option>
+                <option value="cpp">C++</option>
+                <option value="java">Java</option>
+                <option value="html">HTML</option>
+                <option value="css">CSS</option>
+              </select>
+            </li>
+            <li>
+              <select
+                className="bg-black text-white border border-black rounded-lg p-2 w-full shadow-md"
+                value={theme}
+                onChange={(e) => setTheme(e.target.value)}
+              >
+                <option value="vs-dark">Dark</option>
+                <option value="light">Light</option>
+                <option value="hc-black">High Contrast Black</option>
+              </select>
+            </li>
+          </ul>
+        </nav>
+      )}
 
-      <div className="flex-grow relative z-10 bg-gray-900 p-1.5 border-8 border-t-0 border-transparent bg-gradient-to-r from-black via-gray-900 to-black">
+      {/* Code Editor */}
+      <div className="flex-grow relative shadow-xl">
         <Editor
-          height="100%"
+          height="calc(100vh - 60px)"
           language={language}
           value={code || ''}
           onChange={handleEditorChange}
           theme={theme}
           options={{
             minimap: { enabled: false },
-            lineHeight: 24,
+            lineHeight: 22,
+            fontSize: 16,
+            scrollBeyondLastLine: false,
+            smoothScrolling: true,
           }}
         />
       </div>
