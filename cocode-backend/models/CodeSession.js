@@ -5,5 +5,5 @@ const CodeSessionSchema = new mongoose.Schema({
   code: { type: String, default: '' }
 });
 
-const CodeSession = mongoose.model('CodeSession', CodeSessionSchema);
+const CodeSession = mongoose.model('codesessions', CodeSessionSchema);
 export default CodeSession;

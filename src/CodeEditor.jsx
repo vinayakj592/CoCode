@@ -38,7 +38,6 @@ function CodeEditor() {
 
   return (
     <div className="h-screen relative flex flex-col overflow-hidden">
-      {/* Navbar with Black Gradient */}
       <header className="bg-gradient-to-r from-black via-gray-900 to-black shadow-md p-4 text-white flex justify-between items-center h-14 border-b border-gray-800 z-20">
         <button
           className="block lg:hidden text-white text-3xl ml-4"
@@ -72,7 +71,6 @@ function CodeEditor() {
         </div>
       </header>
 
-      {/* Side Menu */}
       <nav
         className={`fixed top-0 right-0 h-full bg-gray-900 bg-opacity-90 backdrop-blur-lg p-6 transition-transform transform ${
           menuOpen ? 'translate-x-0' : 'translate-x-full'
@@ -115,12 +113,11 @@ function CodeEditor() {
         </ul>
       </nav>
 
-      {/* Editor with Thicker Gradient Border */}
       <div className="flex-grow relative z-10 bg-gray-900 p-1.5 border-8 border-t-0 border-transparent bg-gradient-to-r from-black via-gray-900 to-black">
         <Editor
           height="100%"
           language={language}
-          value={code}
+          value={code || ''}
           onChange={handleEditorChange}
           theme={theme}
           options={{
