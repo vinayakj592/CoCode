@@ -6,15 +6,26 @@ const socketHandler = (io) => {
 
     //Join a room
     socket.on('joinRoom', async (roomId) => {
+      if (!roomId) {
+        console.error('No roomId provided');
+        return;
+      }
+      
       socket.join(roomId);
+    
+      // Check if a session with this roomId already exists
       let session = await CodeSession.findOne({ roomId });
+    
+      // If no session exists, create a new one
       if (!session) {
-        // Create a new session if it doesn't exist
-        session = new CodeSession({ roomId, code: '' });
+        session = new CodeSession({ roomId });
         await session.save();
       }
+    
+      // Emit the existing or new session's code
       socket.emit('loadCode', session.code || '');
     });
+    
     
       
 
