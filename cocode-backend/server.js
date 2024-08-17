@@ -6,7 +6,6 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import http from 'http';
 import { Server } from 'socket.io';
-import path from 'path';
 
 import codeRoutes from './routes/codeRoutes.js';
 import codeSocket from './sockets/codeSocket.js';
@@ -37,16 +36,7 @@ app.use(express.json());
 app.use('/api', codeRoutes);
 
 // Socket.IO setup
-codeSocket(io); // Make sure io is defined before this line
-
-// Serve static frontend assets if deployed to the same server
-const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, 'frontend', 'dist')));
-
-// For any other route, serve the frontend's index.html
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
-});
+codeSocket(io); 
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI)
