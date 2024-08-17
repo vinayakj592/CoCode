@@ -5,7 +5,11 @@ import Editor from '@monaco-editor/react';
 import { FiMenu } from 'react-icons/fi';
 import { useParams } from 'react-router-dom';
 
-const socket = io('https://cocode-backend.onrender.com');
+const socket = io('https://cocode-backend.onrender.com', {
+  transports: ['websocket', 'polling'],
+  withCredentials: true,
+});
+
 
 function CodeEditor() {
   const { roomId } = useParams();
