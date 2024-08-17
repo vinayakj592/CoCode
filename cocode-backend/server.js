@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import http from 'http';
 import { Server } from 'socket.io';
+import path from 'path';
 
 import codeRoutes from './routes/codeRoutes.js';
 import codeSocket from './sockets/codeSocket.js';
@@ -23,7 +24,7 @@ app.use(cors({
 // Setup Socket.IO with CORS
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'https://cocode-482d.onrender.com'], // Allow only your frontend's origin
+    origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'https://cocode-482d.onrender.com'],
     methods: ['GET', 'POST'],
     credentials: true,
   },
@@ -37,6 +38,15 @@ app.use('/api', codeRoutes);
 
 // Socket.IO setup
 codeSocket(io); // Make sure io is defined before this line
+
+// Serve static frontend assets if deployed to the same server
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, 'frontend', 'dist')));
+
+// For any other route, serve the frontend's index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
+});
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI)
