@@ -5,7 +5,7 @@ import Editor from '@monaco-editor/react';
 import { FiMenu } from 'react-icons/fi';
 import { useParams } from 'react-router-dom';
 
-const socket = io('http://localhost:5000');
+const socket = io('https://cocode-backend.onrender.com');
 
 function CodeEditor() {
   const { roomId } = useParams();
