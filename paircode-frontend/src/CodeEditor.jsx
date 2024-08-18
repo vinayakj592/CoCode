@@ -49,7 +49,7 @@ function CodeEditor() {
         >
           <FiMenu />
         </button>
-        <h1 className="text-lg lg:text-xl font-extrabold tracking-wide">CoCode</h1>
+        <h1 className="text-lg lg:text-xl font-extrabold tracking-wide">PairCode</h1>
         <div className="hidden lg:flex space-x-4">
           <select
             className="bg-black text-white border border-black rounded-lg p-2 shadow-lg hover:bg-[#242424] transition duration-200"

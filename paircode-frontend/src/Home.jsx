@@ -13,7 +13,7 @@ function Home() {
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-black to-gray-900 text-white font-sans">
       {/* Top Section */}
       <header className="flex justify-center py-6">
-        <h1 className="text-4xl font-bold">CoCode</h1>
+        <h1 className="text-4xl font-bold">PairCode</h1>
       </header>
 
       {/* Main Content */}
