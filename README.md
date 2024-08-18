@@ -1,8 +1,8 @@
-# CoCode - Real-Time Collaborative Code Editor
+# PairCode - Real-Time Collaborative Code Editor
 
-## 📖 About CoCode
+## 📖 About PairCode
 
-CoCode is a real-time collaborative code editor that enables multiple users to work together on the same codebase simultaneously. The platform is built using the MERN stack (MongoDB, Express, React, and Node.js) and uses Socket.IO to synchronize code changes across different users.
+PairCode is a real-time collaborative code editor that enables multiple users to work together on the same codebase simultaneously. The platform is built using the MERN stack (MongoDB, Express, React, and Node.js) and uses Socket.IO to synchronize code changes across different users.
 
 Key features include:
 - Real-time code sharing and editing.
