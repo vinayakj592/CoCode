@@ -34,7 +34,7 @@ function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <h3 className="text-xl font-semibold mb-3">Code with your team</h3>
-              <p className="mb-4">Open a CoCode editor, write or copy code, and share it with colleagues. Pair program and troubleshoot together.</p>
+              <p className="mb-4">Open a PairCode editor, write or copy code, and share it with colleagues. Pair program and troubleshoot together.</p>
               <button
                 className="border border-white px-4 py-2 rounded-md hover:bg-white hover:text-black transition"
                 onClick={generateRandomRoom}
