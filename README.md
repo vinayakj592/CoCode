@@ -1,4 +1,4 @@
-# PairCode - Real-Time Collaborative Code Editor
+# [PairCode](paircode.in) - Real-Time Collaborative Code Editor
 
 ## 📖 About PairCode
 
@@ -91,9 +91,9 @@ Make sure you have the following installed:
 ## 📂 Project Structure
 
 ```bash
-CoCode/
+PairCode/
 │
-├── cocode-frontend/       # Frontend React Application
+├── paircode-frontend/       # Frontend React Application
 │   ├── src/
 │   │   ├── components/
 │   │   │   ├── App.jsx
@@ -102,7 +102,7 @@ CoCode/
 │   ├── public/
 │   └── ...
 │
-├── cocode-backend/        # Backend Node.js Application
+├── paircode-backend/        # Backend Node.js Application
 │   ├── routes/
 │   │   └── codeRoutes.js
 │   ├── sockets/
