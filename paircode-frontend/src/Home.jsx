@@ -67,11 +67,11 @@ function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="py-4 bg-gray-900 text-center">
+      {/* <footer className="py-4 bg-gray-900 text-center">
         <p className="text-sm">
           Created by <a href="https://github.com/vinayakj592" className="underline">Vinayak Joshi</a>
         </p>
-      </footer>
+      </footer> */}
     </div>
   );
 }
